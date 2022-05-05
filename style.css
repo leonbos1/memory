@@ -50,3 +50,27 @@
     text-align: center;
     width: 10%;
 }
+
+.page-grid-container {
+    display: grid;
+    grid-template-areas: 
+        'top-left top-left top-right'
+        'left left right'
+        'left left bottom-right';
+}
+
+.top-left {
+    grid-area: top-left;
+}
+
+.left {
+    grid-area: left;
+}
+
+.right {
+    grid-area: right;
+}
+
+.bottom-right {
+    grid-area: bottom-right;
+}
