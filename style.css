@@ -28,7 +28,7 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
     grid-gap: 10px;
-    max-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
     margin-top: 3%;
     aspect-ratio: 1 / 1;
@@ -62,10 +62,20 @@
     
 .bottom-right{
     align-self: center;
+    max-width: fit-content;
+}
+
+.pr50 {
+    float: left;
+    width: 50%;
+}
+
+input[type=color]{
+    width: 80%;
 }
 
 
-@media all and (min-width: 920px){ /** desktop versie*/
+@media all and (min-width: 800px){ /** desktop versie*/
     .page-container {
         display: grid;
         grid-template-areas: 
@@ -79,6 +89,10 @@
     
     .left {
         grid-area: left;
+    }
+
+    .bottom-right{
+        align-self: baseline;
     }
 
     .options {
