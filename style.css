@@ -74,6 +74,10 @@ input[type=color]{
     width: 80%;
 }
 
+.right {
+    margin: auto;
+}
+
 
 @media all and (min-width: 800px){ /** desktop versie*/
     .page-container {
@@ -89,6 +93,10 @@ input[type=color]{
     
     .left {
         grid-area: left;
+    }
+
+    .right {
+        margin: 0;
     }
 
     .bottom-right{
