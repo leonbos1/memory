@@ -55,20 +55,19 @@
 } 
     
 .top-left {
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 
 .left {
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
 }
 
 .right {
-    background-color: aqua;
-    flex: 200px
+    /* background-color: aqua; */
 }
 
 .bottom-right {
-    background-color: red;
+    /* background-color: red; */
 }
 
 
