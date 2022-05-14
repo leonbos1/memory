@@ -32,6 +32,7 @@
     margin: 0 auto;
     margin-top: 3%;
     aspect-ratio: 1 / 1;
+    padding-bottom: 20px;
     }
 
 .container {
@@ -53,31 +54,23 @@
     flex-direction: column;
     column-gap: 20px;
 } 
+
+.options {
+    display:grid;
+    grid-template-columns: auto auto;
+}
     
-.top-left {
-    /* background-color: yellow; */
-}
-
-.left {
-    /* background-color: greenyellow; */
-}
-
-.right {
-    /* background-color: aqua; */
-}
-
-.bottom-right {
-    /* background-color: red; */
+.bottom-right{
+    align-self: center;
 }
 
 
-@media all and (min-width: 800px){ /** desktop versie*/
+@media all and (min-width: 920px){ /** desktop versie*/
     .page-container {
         display: grid;
         grid-template-areas: 
             'top-left top-left top-right'
-            'left left right'
-            'left left bottom-right';
+            'left left right';
     } 
 
     .top-left {
@@ -87,12 +80,10 @@
     .left {
         grid-area: left;
     }
-    
-    .right {
+
+    .options {
         grid-area: right;
-    }
-    
-    .bottom-right {
-        grid-area: bottom-right;
+        grid-template-columns: none;
+        grid-template-rows: auto auto;
     }
 }

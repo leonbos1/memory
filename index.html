@@ -54,39 +54,50 @@
 				<div class="closed card">.</div>
 				<div class="closed card">.</div>
 			</div>
-
-			<div class="right">
-				<h2>Top 5</h2>
-				<ol>
-					<li>nummer 1</li>
-					<li>nummer 2</li>
-					<li>nummer 3</li>
-					<li>nummer 4</li>
-					<li>nummer 5</li>
-				</ol>
-				<p><b>Gemiddelde speeltijd:</b> 0 sec</p>
-				<p><b>Karakter op kaarten:</b> 
-					<select name="karakter" id="karakter">
-						<option value="X">X</option>
-						<option value="O">O</option>
-					</select>
-				</p>
-				<p><b>Afmeting bord:</b>
-					<select name="karakter" id="karakter">
-						<option value="1">1</option>
-						<option value="2">2</option>
-					</select></p>
-				</p>
-			</div>
-			<div class="bottom-right">
-				<form>
-					<button type="button">Kaartkleur</button>
-					<input type="color" value="#ff0000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
-					<button type="button">Open</button>
-					<input type="color" value="#ff0000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
-					<button type="button">Gevonden</button>
-					<input type="color" value="#ff0000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
-				</form>
+			<div class="options">
+				<div class="right">
+					<h2>Top 5</h2>
+					<ol>
+						<li>nummer 1</li>
+						<li>nummer 2</li>
+						<li>nummer 3</li>
+						<li>nummer 4</li>
+						<li>nummer 5</li>
+					</ol>
+					<p><b>Gemiddelde speeltijd:</b> 0 sec</p>
+					<p>
+						<b>Karakter op kaarten:</b> 
+						<select name="karakter" id="karakter">
+							<option value="X">X</option>
+							<option value="O">O</option>
+							<option value=".">.</option>
+						</select>
+						<br>
+						<b>Afmeting bord:</b>
+						<select name="karakter" id="karakter">
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+					</p>
+				</div>
+				<div class="bottom-right">
+					<div>
+						<label>Kaartkleur:</label>
+						<input type="color" value="#ff0000" />
+					</div> 
+					<div>
+						<label>Open:</label>
+						<input type="color" value="#ff0000"/>
+					</div>
+					<div>
+						<label>Gevonden:</label>
+						<input type="color" value="#ff0000" />
+					</div>
+					<br>
+					<div>
+						<button type="button">Nieuw Spel</button>
+					</div>
+				</div>
 			</div>
 		</div>
 
