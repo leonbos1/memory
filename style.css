@@ -1,3 +1,7 @@
+body {
+    font-family:Lato, sans-serif ;
+}
+
 .card {
     border: 1px solid rgba(0, 0, 0, 0.8);
     font-size: 30px;
@@ -76,6 +80,17 @@ input[type=color]{
 
 .right {
     margin: auto;
+}
+
+button, select, input {
+    background-color: white;
+    border-radius: .375em;
+    border: 1px solid gray;
+}
+
+button:hover, select:hover, input:hover {
+    border-color: black;
+    background-color: whitesmoke;
 }
 
 
