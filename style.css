@@ -2,6 +2,10 @@ body {
     font-family:Lato, sans-serif ;
 }
 
+.page-container {
+    width:fit-content;
+}
+
 .card {
     border: 1px solid rgba(0, 0, 0, 0.8);
     font-size: 30px;
@@ -61,12 +65,12 @@ body {
 
 .options {
     display:grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
 }
+
     
 .bottom-right{
     align-self: center;
-    max-width: fit-content;
 }
 
 .pr50 {
@@ -75,7 +79,7 @@ body {
 }
 
 input[type=color]{
-    width: 80%;
+    max-width: 80%;
 }
 
 .right {
@@ -98,7 +102,7 @@ button:hover, select:hover, input:hover {
 }
 
 
-@media all and (min-width: 800px){ /** desktop versie*/
+@media all and (min-width: 768px){ /** desktop versie*/
     .page-container {
         display: grid;
         grid-template-areas: 
@@ -120,6 +124,7 @@ button:hover, select:hover, input:hover {
 
     .bottom-right{
         align-self: baseline;
+        max-width: fit-content;
     }
 
     .options {
