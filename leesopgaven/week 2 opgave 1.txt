@@ -1,0 +1,18 @@
+Webtech III
+Week 2
+Leesopgave 1
+
+-----------
+
+a.
+De meest belemmerende functie lijkt me als web forms niet gelabeld en dus ontoegankelijk zijn. Web forms kom je overal tegen. Of dat nou inloggen is, iets zoeken, of een bestelling doen bij een webwinkel. Meestal zijn ze noodzakelijk voor de functionaliteit van een website. Met ongelabelde buttons en links kan je met trial en error nog wel ergens komen. Bij een form kan dat gewoon niet.
+
+Het automatisch afspelen van audio en video lijkt me ook heel vervelend, want op het moment dat je de screen reader niet meer kan horen, kan je de website ook niet meer gebruiken. Maar deze is niet het vervelendst, want dit komt gelukkig niet zo veel voor. Als het al voorkomt is het gelukkig meestal makkelijk om op pauze via je toetsenbord.
+
+
+b.
+Zeker kom ik als ziend persoon dingen tegen die mij belemmeren in het correct gebruiken van een website.
+Het meest vervelend is als links kapot zijn. De website is dan niet (meer) goed te gebruiken. Ik denk dat de enige manier om dit te voorkomen is om alle links te testen.
+Ook vervelend zijn ads die over de site heen staan, zodat je sommige dingen niet meer kan zien. Of ads die alineas onderbreken zodat je de tekst niet fatsoenlijk kan lezen, of als er uberhaupt te veel ads op een pagina staan. Persoonlijk zou ik de ads een vaste plek geven waar ze niet in de weg staan, of je moet ze kunnen wegklikken.
+Iets anders vervelends is dat een website niet goed responsive is en buttons elkaar gaan overlappen (zoals op blackboard...). Dan denk je dat je op de ene button klikt, maar vervolgens ga je heel ergens anders heen. Hetzelfde geldt voor andere elementen die elkaar overlappen. Ik zou de site goed testen op verschillende formaten en het dan aanpassen zodat het elkaar niet overlapt.
+Nog iets vervelends is als het niet duidelijk is waar een link naartoe gaat. Bijvoorbeeld als je een bestand wilt downloaden en er zijn 3 plekken waar download staat, maar maar 1 is de juiste. De juiste vinden is wel mogelijk, maar je moet altijd zoeken. Dit kan je voorkomen door de link duidelijker te beschrijven. Al doen ze dat met ads waarschijnlijk expres.
