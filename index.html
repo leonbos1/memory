@@ -16,49 +16,14 @@
 		<div class="page-container"> 
 			<div class="container top-left">
 				<h1 class="title">Memory!</h1>
-				<p>Time passed: 0 seconds</p> 
-				<p>Pairs found: 0</p> 
+				<p id="timer">Time passed: 0 seconds</p> 
+				<p>Pairs found: 1</p> 
 				<p>Time remaining:</p>
 				<progress value="75" max="100" class="time-remaining">ghjfj</progress>
 			</div>
-			<div class="grid-container left">
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="open card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="found card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="found card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
-				<div class="closed card">.</div>
+			<div id="grid" class="grid-container left">
 			</div>
+
 			<div class="options">
 				<div class="right">
 					<h2>Top 5</h2>
@@ -90,19 +55,19 @@
 						<label for="kaartkleur">Kaartkleur:</label>
 					</div>
 					<div class="pr50">
-						<input type="color" value="#ff0000" id="kaartkleur" />
+						<input type="color" value="#0004ff" id="kaartkleur" />
 					</div> 
 					<div class="pr50">
 						<label for="open-kaart">Open:</label>
 					</div>
 					<div class="pr50">
-						<input type="color" value="#ff0000" id="open-kaart" />
+						<input type="color" value="#0003a5" id="open-kaart" />
 					</div>
 					<div class="pr50">
 						<label for="gevonden-kaart">Gevonden:</label>
 					</div>
 					<div class="pr50">
-						<input type="color" value="#ff0000" id="gevonden-kaart" />
+						<input type="color" value="#00ff37" id="gevonden-kaart" />
 					</div>
 					<div class="new-game">
 						<button type="button">Nieuw Spel</button>
