@@ -104,6 +104,7 @@ button:hover, select:hover, input:hover {
 
 @media all and (min-width: 768px){ /** desktop versie*/
     .page-container {
+        width: auto;
         display: grid;
         grid-template-areas: 
             'top-left top-left top-right'
