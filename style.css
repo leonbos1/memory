@@ -104,7 +104,7 @@ button:hover, select:hover, input:hover {
 }
 
 
-@media all and (min-width: 768px){ /** desktop versie*/
+@media all and (min-width: 800px){ /** desktop versie*/
     .page-container {
         width: auto;
         display: grid;
@@ -134,5 +134,12 @@ button:hover, select:hover, input:hover {
         grid-area: right;
         grid-template-columns: none;
         grid-template-rows: auto auto;
+    }
+}
+
+@media all and (min-width: 1200px){
+    .page-container {
+        max-width: 1200px;
+        margin:0 auto;
     }
 }
