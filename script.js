@@ -1,18 +1,27 @@
 var gridSize = 6;
-var charArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'];
+var charArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R'];
 
 window.onload = function() {
     timePassed();
-
-    let doc = document.getElementById("grid");
 
     for (i = 0; i < (gridSize**2); i++) {
 
         let randomInt = Math.floor(Math.random() * charArray.length);
         let randomLetter = charArray[randomInt];
+        var grid = document.getElementById("grid");
 
-        doc.innerHTML += `<div id=card-${i} class="closed card" onclick=cardClickHandler('card-${i}')>${randomLetter}</div>`;
+        grid.innerHTML += `<div id=card-${i} class="closed card">${randomLetter}</div>`;
 
+    }    
+
+    var cards = document.querySelectorAll(".card");
+
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener("click", function() {
+            if (cards[i].className === 'closed card') {
+                cards[i].className = 'open card';
+            }
+        });
     }
 
     //voorbeeld om gevonden kaarten te laten zien
@@ -24,16 +33,6 @@ window.onload = function() {
     card12.innerText = 'E';
 
 };
-
-function cardClickHandler(id) {
-
-    doc = document.getElementById(id);
-
-    if (doc.className === 'closed card') {
-        doc.className = 'open card';
-    }
-
-}
 
 
 function sleep(ms) {
