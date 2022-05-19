@@ -8,26 +8,39 @@ body {
 
 .card {
     border: 1px solid rgba(0, 0, 0, 0.8);
-    font-size: 30px;
+    border-radius: 5px;
     text-align: center;
     padding: 30px;
-    align-items: center;
     width: 30px;
+    height: 35px;
+    display: inline-block;
 }
 
 .closed {
     background-color: rgba(0, 4, 255, 0.8);
-    transition: background-color 0.5s;
-    text-indent: -9999px;
+    transform: rotateY(-180deg);
 }
 
-.closed:hover {
-    transition-duration: 0.5s;
-    background-color: rgba(0, 3, 165);
+.closed p {
+    display: none;
 }
 
 .open { 
+    transition-duration: 0.5s;
+    transform: rotateY(0deg);
     background-color: rgb(0, 3, 165);
+    
+}
+
+.open p {
+    font-size: 30px;
+    margin: 0;
+    animation: card-text 1s;
+}
+
+@keyframes card-text {
+    from {opacity: 0;}
+    to {opacity: 100;}
 }
 
 .found {
@@ -37,7 +50,7 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
-    grid-gap: 10px;
+    grid-gap: 5px;
     max-width: 100%;
     margin: 0 auto;
     margin-top: 3%;

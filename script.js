@@ -1,17 +1,24 @@
-var gridSize = 6;
-var charArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R'];
-
 window.onload = function() {
     timePassed();
 
-    for (i = 0; i < (gridSize**2); i++) {
+    var chosenLetters = [];
+    var gridSize = 6;
+    var charArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-        let randomInt = Math.floor(Math.random() * charArray.length);
-        let randomLetter = charArray[randomInt];
-        var grid = document.getElementById("grid");
+    for (let j = 0; j < (gridSize**2/2); j++) {
+        let randomIndex = Math.floor(Math.random() * charArray.length);
+        let randomLetter = charArray.splice(randomIndex, 1)
 
-        grid.innerHTML += `<div id=card-${i} class="closed card">${randomLetter}</div>`;
+        chosenLetters.push(randomLetter);
+        chosenLetters.push(randomLetter);
+    }
 
+    for (let i = 0; i < (gridSize**2); i++) {
+        let randomIndex = Math.floor(Math.random() * chosenLetters.length);
+        let randomLetter = chosenLetters.splice(randomIndex, 1);
+
+        let grid = document.getElementById("grid");
+        grid.innerHTML += `<div id=card-${i} class="closed card"><p>${randomLetter}</p></div>`;
     }    
 
     var cards = document.querySelectorAll(".card");
@@ -23,15 +30,6 @@ window.onload = function() {
             }
         });
     }
-
-    //voorbeeld om gevonden kaarten te laten zien
-    let card4 =  document.getElementById("card-4");
-    card4.className = 'found card';
-    card4.innerText = 'E';
-    let card12 =  document.getElementById("card-12");
-    card12.className = 'found card';
-    card12.innerText = 'E';
-
 };
 
 
