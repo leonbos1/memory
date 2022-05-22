@@ -103,7 +103,7 @@ button:hover, select:hover, input:hover {
 }
 
 
-@media all and (min-width: 800px){ /** desktop versie*/
+@media all and (min-width: 820px){ /** desktop versie*/
     .page-container {
         width: auto;
         display: grid;

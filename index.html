@@ -14,14 +14,15 @@
 	</head>
 	<body>
 		<div class="page-container"> 
-			<div class="container top-left" aria-label="Memory spel informatie">
+			<div class="container top-left" aria-label="Memory game information">
 				<h1 class="title">Memory!</h1>
-				<p id="timer">Time passed: 0 seconds</p> 
-				<p>Pairs found: 1</p> 
-				<p>Time remaining:</p>
-				<progress value="75" max="100" class="time-remaining"></progress>
+				<p id="timer" aria-label="Time passed">Time passed: 0 seconds</p> 
+				<p aria-label="Pairs found">Pairs found: 1</p> 
+				<p aria-label="Time remaining">Time remaining: <br>
+					<progress value="75" max="100" class="time-remaining"></progress>
+				</p>
 			</div>
-			<div id="grid" class="grid-container left" aria-label="Memory kaarten">
+			<div id="grid" class="grid-container left" aria-label="Memory cards">
 				<div class="closed card">T</div>
 				<div class="closed card">X</div>
 				<div class="closed card">R</div>
@@ -60,8 +61,8 @@
 				<div class="closed card">G</div>
 			</div>
 
-			<div class="options" aria-label="Spel opties">
-				<div class="right" aria-label="Memory spel informatie">
+			<div class="options" aria-label="Game options">
+				<div class="right" aria-label="Memory game information">
 					<h2>Top 5</h2>
 					<ol>
 						<li>nummer 1</li>
@@ -70,17 +71,17 @@
 						<li>nummer 4</li>
 						<li>nummer 5</li>
 					</ol>
-					<p><b>Gemiddelde speeltijd:</b> 0 sec</p>
+					<p><b>Average playtime:</b> 0 sec</p>
 					<p>
-						<label for="karakter"><b>Karakter op kaarten:</b></label>
-						<select name="karakter" id="karakter">
+						<label for="character"><b>Character on cards:</b></label>
+						<select name="character" id="character">
 							<option value="X">X</option>
 							<option value="O">O</option>
 							<option value=".">.</option>
 						</select>
 						<br>
-						<label for="afmeting"><b>Afmeting bord:</b></label>
-						<select name="afmeting" id="afmeting">
+						<label for="dimensions"><b>Board dimensions:</b></label>
+						<select name="dimensions" id="dimensions">
 							<option value="5">5</option>
 							<option value="6">6</option>
 						</select>
@@ -88,25 +89,25 @@
 				</div>
 				<div class="bottom-right">
 					<div class="pr50">
-						<label for="kaartkleur">Kaartkleur:</label>
+						<label for="card-color">Card color:</label>
 					</div>
 					<div class="pr50">
-						<input type="color" value="#0004ff" id="kaartkleur" />
+						<input type="color" value="#0004ff" id="card-color" />
 					</div> 
 					<div class="pr50">
-						<label for="open-kaart">Open:</label>
+						<label for="open-card">Open:</label>
 					</div>
 					<div class="pr50">
-						<input type="color" value="#0003a5" id="open-kaart" />
+						<input type="color" value="#0003a5" id="open-card" />
 					</div>
 					<div class="pr50">
-						<label for="gevonden-kaart">Gevonden:</label>
+						<label for="found-card">Found:</label>
 					</div>
 					<div class="pr50">
-						<input type="color" value="#00ff37" id="gevonden-kaart" />
+						<input type="color" value="#00ff37" id="found-card" />
 					</div>
-					<div class="new-game" aria-label="Nieuw spel">
-						<button type="button">Nieuw Spel</button>
+					<div class="new-game" aria-label="New game">
+						<button type="button">New Game</button>
 					</div>
 				</div>
 			</div>
