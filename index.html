@@ -14,14 +14,14 @@
 	</head>
 	<body>
 		<div class="page-container"> 
-			<div class="container top-left">
+			<div class="container top-left" aria-label="Memory spel informatie">
 				<h1 class="title">Memory!</h1>
 				<p id="timer">Time passed: 0 seconds</p> 
 				<p>Pairs found: 1</p> 
 				<p>Time remaining:</p>
 				<progress value="75" max="100" class="time-remaining"></progress>
 			</div>
-			<div id="grid" class="grid-container left">
+			<div id="grid" class="grid-container left" aria-label="Memory kaarten">
 				<div class="closed card">T</div>
 				<div class="closed card">X</div>
 				<div class="closed card">R</div>
@@ -60,8 +60,8 @@
 				<div class="closed card">G</div>
 			</div>
 
-			<div class="options">
-				<div class="right">
+			<div class="options" aria-label="Spel opties">
+				<div class="right" aria-label="Memory spel informatie">
 					<h2>Top 5</h2>
 					<ol>
 						<li>nummer 1</li>
@@ -105,7 +105,7 @@
 					<div class="pr50">
 						<input type="color" value="#00ff37" id="gevonden-kaart" />
 					</div>
-					<div class="new-game">
+					<div class="new-game" aria-label="Nieuw spel">
 						<button type="button">Nieuw Spel</button>
 					</div>
 				</div>
