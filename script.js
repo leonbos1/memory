@@ -18,7 +18,7 @@ window.onload = function() {
         let randomLetter = chosenLetters.splice(randomIndex, 1);
 
         let grid = document.getElementById("grid");
-        grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0"><p>${randomLetter}</p></div>`;
+        grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0" aria-label="closed card"><p>${randomLetter}</p></div>`;
     }    
 
     var cards = document.querySelectorAll(".card");
@@ -40,11 +40,14 @@ function openCard(event){
     let current = event.currentTarget;
     if (current.className === 'closed card'){
         current.className = 'open card';
+        current.ariaLabel = 'open card';
         selectedCards.push(current);
         if (selectedCards.length === 2){
             if (selectedCards[0].innerText === selectedCards[1].innerText){
                 selectedCards[0].className = 'found card';
                 selectedCards[1].className = 'found card';
+                selectedCards[0].ariaLabel = 'found card';
+                selectedCards[1].ariaLabel = 'found card';
                 selectedCards = [];
             } else {
                 setTimeout(closeCards, 1000);
@@ -57,7 +60,9 @@ function openCard(event){
 
 function closeCards(){
     selectedCards[0].className = 'closed card';
-    selectedCards[1].className = 'closed card';  
+    selectedCards[1].className = 'closed card'; 
+    selectedCards[0].ariaLabel = 'closed card';
+    selectedCards[1].ariaLabel = 'closed card'; 
     selectedCards = []; 
 }
 
