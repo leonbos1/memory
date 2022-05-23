@@ -39,30 +39,27 @@ var selectedCards = [];
 function openCard(event){
     let current = event.currentTarget;
     if (current.className === 'closed card'){
+        if (selectedCards.length === 2){
+            changeCards('closed card');
+        }
+
         current.className = 'open card';
         current.ariaLabel = 'open card';
         selectedCards.push(current);
+
         if (selectedCards.length === 2){
             if (selectedCards[0].innerText === selectedCards[1].innerText){
-                selectedCards[0].className = 'found card';
-                selectedCards[1].className = 'found card';
-                selectedCards[0].ariaLabel = 'found card';
-                selectedCards[1].ariaLabel = 'found card';
-                selectedCards = [];
-            } else {
-                setTimeout(closeCards, 1000);
+                changeCards('found card');
             }
         }
     }
 }
 
-// TODO bug: kan nu meer dan 2 selecteren, timeout is misschien niet de beste oplossing
-
-function closeCards(){
-    selectedCards[0].className = 'closed card';
-    selectedCards[1].className = 'closed card'; 
-    selectedCards[0].ariaLabel = 'closed card';
-    selectedCards[1].ariaLabel = 'closed card'; 
+function changeCards(name){
+    selectedCards[0].className = name;
+    selectedCards[1].className = name; 
+    selectedCards[0].ariaLabel = name;
+    selectedCards[1].ariaLabel = name; 
     selectedCards = []; 
 }
 
