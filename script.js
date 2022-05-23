@@ -24,14 +24,49 @@ window.onload = function() {
     var cards = document.querySelectorAll(".card");
 
     for (let i = 0; i < cards.length; i++) {
-        cards[i].addEventListener("click", function() {
-            if (cards[i].className === 'closed card') {
-                cards[i].className = 'open card';
-            }
-        });
+        cards[i].addEventListener("click", openCard);
+
+        // cards[i].addEventListener("click", function() {
+        //     if (cards[i].className === 'closed card') {
+        //         cards[i].className = 'open card';
+        //     }
+        // });
+        // cards[i].addEventListener("keypress", function(e) {
+        //     if (e.key == 'Enter') {
+        //         if (cards[i].className === 'closed card') {
+        //             cards[i].className = 'open card';
+        //         }
+        //     }
+        // });
     }
 };
 
+var selectedCards = [];
+
+function openCard(e){
+    let current = e.currentTarget;
+    if (current.className === 'closed card'){
+        current.className = 'open card';
+        selectedCards.push(current);
+        if (selectedCards.length === 2){
+            if (selectedCards[0].innerText === selectedCards[1].innerText){
+                selectedCards[0].className = 'found card';
+                selectedCards[1].className = 'found card';
+                selectedCards = [];
+            } else {
+                setTimeout(closeCards, 1000);
+            }
+        }
+    }
+}
+
+// TODO bug: kan nu meer dan 2 selecteren, timeout is misschien niet de beste oplossing
+
+function closeCards(){
+    selectedCards[0].className = 'closed card';
+    selectedCards[1].className = 'closed card';  
+    selectedCards = []; 
+}
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
