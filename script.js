@@ -18,7 +18,7 @@ window.onload = function() {
         let randomLetter = chosenLetters.splice(randomIndex, 1);
 
         let grid = document.getElementById("grid");
-        grid.innerHTML += `<div id=card-${i} class="closed card"><p>${randomLetter}</p></div>`;
+        grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0"><p>${randomLetter}</p></div>`;
     }    
 
     var cards = document.querySelectorAll(".card");
@@ -26,25 +26,18 @@ window.onload = function() {
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", openCard);
 
-        // cards[i].addEventListener("click", function() {
-        //     if (cards[i].className === 'closed card') {
-        //         cards[i].className = 'open card';
-        //     }
-        // });
-        // cards[i].addEventListener("keypress", function(e) {
-        //     if (e.key == 'Enter') {
-        //         if (cards[i].className === 'closed card') {
-        //             cards[i].className = 'open card';
-        //         }
-        //     }
-        // });
+        cards[i].addEventListener("keypress", function(key) {
+            if (key.key == 'Enter') {
+                openCard(key);
+            }
+        });
     }
 };
 
 var selectedCards = [];
 
-function openCard(e){
-    let current = e.currentTarget;
+function openCard(event){
+    let current = event.currentTarget;
     if (current.className === 'closed card'){
         current.className = 'open card';
         selectedCards.push(current);
