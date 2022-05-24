@@ -134,10 +134,10 @@ button:hover, select:hover, input:hover {
 }
 
 .pop-up .you-won {
-    position: absolute;
+    position: relative;
     width: 160px;
     top: 35%;
-    left: 35%;
+    margin: 0 auto;
     background-color:gold;
     border-radius: 0.375em;
     border-color: black;
