@@ -138,8 +138,9 @@ button:hover, select:hover, input:hover {
     width: 160px;
     top: 35%;
     left: 35%;
-    background-color: whitesmoke;
+    background-color:gold;
     border-radius: 0.375em;
+    border-color: black;
     text-align: center;
     padding: 50px;
 }
