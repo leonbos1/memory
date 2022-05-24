@@ -51,6 +51,10 @@ function openCard(event){
             if (selectedCards[0].innerText === selectedCards[1].innerText){
                 changeCards('found card');
             }
+            if (document.getElementsByClassName("closed").length === 0){
+                gameWon();
+            }
+
         }
     }
 }
@@ -61,6 +65,10 @@ function changeCards(name){
     selectedCards[0].ariaLabel = name;
     selectedCards[1].ariaLabel = name; 
     selectedCards = []; 
+}
+
+function gameWon(){
+    document.getElementById("new-game-pop-up").style.display = "block";
 }
 
 function sleep(ms) {

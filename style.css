@@ -124,6 +124,26 @@ button:hover, select:hover, input:hover {
     margin-top: 100px;
 }
 
+.pop-up {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.pop-up .you-won {
+    position: absolute;
+    width: 160px;
+    top: 35%;
+    left: 35%;
+    background-color: whitesmoke;
+    border-radius: 0.375em;
+    text-align: center;
+    padding: 50px;
+}
+
 
 @media all and (min-width: 820px){ /** desktop versie*/
     .page-container {
