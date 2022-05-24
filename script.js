@@ -69,6 +69,11 @@ function changeCards(name){
 
 function gameWon(){
     document.getElementById("new-game-pop-up").style.display = "block";
+    // stop time
+    // show time?
+    // top 5
+    // new game?
+
 }
 
 function sleep(ms) {
