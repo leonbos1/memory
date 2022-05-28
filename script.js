@@ -1,5 +1,6 @@
-var gridSize = 6;
+var gridSize = 2;
 var gridIndexes = []
+var imageType = "dog"
 
 window.onload = function() {
     timePassed();
@@ -25,7 +26,7 @@ window.onload = function() {
         i1 = gridIndexes.splice(randomIndex, 1);
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
         i2 = gridIndexes.splice(randomIndex, 1);
-        getPicsumImage(i1, i2)
+        getImage(i1, i2)
         document.getElementById(`card-${i1}`).classList.add(`card-${i1}`)
         document.getElementById(`card-${i2}`).classList.add(`card-${i1}`)
 
@@ -43,6 +44,30 @@ window.onload = function() {
         });
     }
 };
+
+function getImage(i1, i2) {
+    switch(imageType){
+        case 'random':
+            //todo, imageType = random
+        case 'picsum':
+            getPicsumImage(i1, i2)
+            break;
+        case 'dog':
+            getDogImage(i1, i2)
+            break;
+    }
+}
+
+function getDogImage(i1, i2){
+    fetch("https://dog.ceo/api/breeds/image/random")
+    .then(response => response.json())
+    .then( response => {
+        el = document.getElementById(`card-${i1}-img`)
+        el.src = response.message
+        el = document.getElementById(`card-${i2}-img`)
+        el.src = response.message
+    })
+}
 
 function getPicsumImage(i1, i2){
     fetch("https://picsum.photos/200/300")
