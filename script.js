@@ -1,25 +1,35 @@
+var gridSize = 2;
+var gridIndexes = []
+
 window.onload = function() {
     timePassed();
 
-    var chosenLetters = [];
-    var gridSize = 6;
+    let grid = document.getElementById("grid");
+    for (let i = 0; i < (gridSize**2); i++) {    
+        grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0" aria-label="closed card">
+        <img id=card-${i}-img></img>
+        </div>`;
+        gridIndexes.push(i);
+    }
+
     var charArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
     for (let j = 0; j < (gridSize**2/2); j++) {
+        //index for choosing random letter
         let randomIndex = Math.floor(Math.random() * charArray.length);
         let randomLetter = charArray.splice(randomIndex, 1)
 
-        chosenLetters.push(randomLetter);
-        chosenLetters.push(randomLetter);
+        //choosing random grid card
+        
+        randomIndex = Math.floor(Math.random() * gridIndexes.length);
+        i1 = gridIndexes.splice(randomIndex, 1);
+        randomIndex = Math.floor(Math.random() * gridIndexes.length);
+        i2 = gridIndexes.splice(randomIndex, 1);
+        getPicsumImage(i1, i2)
+        // document.getElementById(`card-${randomGridCard}`).innerHTML = `<p>${randomLetter}</p>`
+        
+
     }
-
-    for (let i = 0; i < (gridSize**2); i++) {
-        let randomIndex = Math.floor(Math.random() * chosenLetters.length);
-        let randomLetter = chosenLetters.splice(randomIndex, 1);
-
-        let grid = document.getElementById("grid");
-        grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0" aria-label="closed card"><p>${randomLetter}</p></div>`;
-    }    
 
     var cards = document.querySelectorAll(".card");
 
@@ -33,6 +43,16 @@ window.onload = function() {
         });
     }
 };
+
+function getPicsumImage(i1, i2){
+    fetch("https://picsum.photos/200/300")
+    .then(response => {
+        el = document.getElementById(`card-${i1}-img`)
+        el.src = response.url
+        el = document.getElementById(`card-${i2}-img`)
+        el.src = response.url
+    })
+}
 
 var selectedCards = [];
 

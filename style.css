@@ -16,6 +16,11 @@ body {
     display: inline-block;
 }
 
+.card img {
+    width: 100%;
+    height: 100%;
+}
+
 .closed {
     background-color: rgba(0, 4, 255, 0.8);
     transform: rotateY(-180deg);
@@ -24,6 +29,11 @@ body {
 .closed p {
     display: none;
 }
+
+.closed img {
+    display: none;
+}
+
 .closed:hover {
     background-color: rgba(0, 3, 165);
 }
