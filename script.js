@@ -1,5 +1,5 @@
-var gridSize = 2;
-var imageType = "dogs"
+var gridSize = 6;
+var imageType = "dog"
 
 window.onload = function() {
     createCardGrid()
