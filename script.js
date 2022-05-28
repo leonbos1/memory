@@ -1,15 +1,28 @@
 var gridSize = 2;
-var gridIndexes = []
 var imageType = "dog"
 
 window.onload = function() {
-    timePassed();
+    createCardGrid()
+    newGame()
 
+};
+
+function createCardGrid(){
     let grid = document.getElementById("grid");
     for (let i = 0; i < (gridSize**2); i++) {    
         grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0" aria-label="closed card">
         <img id=card-${i}-img></img>
         </div>`;
+    }
+}
+
+function newGame(){
+    var gridIndexes = []
+    document.querySelectorAll('.card').forEach(
+        card => card.className = "closed card"
+    )
+
+    for (let i = 0; i < (gridSize**2); i++) {    
         gridIndexes.push(i);
     }
 
@@ -17,11 +30,11 @@ window.onload = function() {
 
     for (let j = 0; j < (gridSize**2/2); j++) {
         //index for choosing random letter
+        //not in use atm
         let randomIndex = Math.floor(Math.random() * charArray.length);
         let randomLetter = charArray.splice(randomIndex, 1)
 
         //choosing random grid card
-        
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
         i1 = gridIndexes.splice(randomIndex, 1);
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
@@ -32,6 +45,7 @@ window.onload = function() {
 
     }
 
+    //create events
     var cards = document.querySelectorAll(".card");
 
     for (let i = 0; i < cards.length; i++) {
@@ -43,7 +57,10 @@ window.onload = function() {
             }
         });
     }
-};
+
+    timePassed();
+
+}
 
 function getImage(i1, i2) {
     switch(imageType){
@@ -120,7 +137,12 @@ function gameWon(){
     // stop time
     // show time?
     // top 5
+
     // new game?
+    document.getElementById("new-game").addEventListener('click', function() {
+        document.getElementById("new-game-pop-up").style.display = "none"
+        newGame();
+    })
 
 }
 
