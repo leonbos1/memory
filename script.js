@@ -1,4 +1,4 @@
-var gridSize = 2;
+var gridSize = 6;
 var gridIndexes = []
 
 window.onload = function() {
@@ -26,8 +26,8 @@ window.onload = function() {
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
         i2 = gridIndexes.splice(randomIndex, 1);
         getPicsumImage(i1, i2)
-        document.getElementById(`card-${i1}`).classList.add(`card-${randomLetter}`)
-        document.getElementById(`card-${i2}`).classList.add(`card-${randomLetter}`)
+        document.getElementById(`card-${i1}`).classList.add(`card-${i1}`)
+        document.getElementById(`card-${i2}`).classList.add(`card-${i1}`)
 
     }
 

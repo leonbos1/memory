@@ -5,21 +5,39 @@ body {
 .page-container {
     width:fit-content;
     margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    column-gap: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-gap: 1%;
+    max-width: 100%;
+    max-height: 100vh;
+    margin: 0 auto;
+    margin-top: 3%;
+    aspect-ratio: 1 / 1;
+    padding-bottom: 30px;
 }
 
 .card {
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 5px;
     text-align: center;
-    padding: 30px;
-    width: 30px;
-    height: 35px;
+    /* padding: 30px; */
+    width: auto;
+    height: auto;
+    max-height: 20vh;
     display: inline-block;
 }
 
 .card img {
-    width: 100%;
+    float: right;
     height: 100%;
+    width: 100%;
 }
 
 .closed {
@@ -31,9 +49,9 @@ body {
     display: none;
 }
 
-.closed img {
+/* .closed img {
     display: none;
-}
+} */
 
 .closed:hover {
     background-color: rgba(0, 3, 165);
@@ -66,22 +84,6 @@ body {
     margin: 0;    
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    grid-gap: 1%;
-    max-width: 100%;
-    margin: 0 auto;
-    margin-top: 3%;
-    aspect-ratio: 1 / 1;
-    padding-bottom: 30px;
-    }
-
-.container {
-    margin: 0 auto;
-    text-align: center;
-}
-
 .time-remaining {
     background-color: green;
     color:white;
@@ -90,12 +92,10 @@ body {
     width: 190px;
 }
 
-.page-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    column-gap: 20px;
-} 
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
 
 .options {
     display:grid;
@@ -158,6 +158,10 @@ button:hover, select:hover, input:hover {
 
 
 @media all and (min-width: 820px){ /** desktop versie*/
+    .body {
+        max-height: 100vh;
+    }
+    
     .page-container {
         width: auto;
         display: grid;
@@ -181,12 +185,14 @@ button:hover, select:hover, input:hover {
     .bottom-right{
         align-self: baseline;
         max-width: fit-content;
+        margin-top: 50px;
     }
 
     .options {
         grid-area: right;
-        grid-template-columns: none;
-        grid-template-rows: auto auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
 }
 
