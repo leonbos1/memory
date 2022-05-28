@@ -1,5 +1,5 @@
 var gridSize = 2;
-var imageType = "dog"
+var imageType = "dogs"
 
 window.onload = function() {
     createCardGrid()
@@ -58,12 +58,14 @@ function newGame(){
         });
     }
 
+    //todo reset nog niet
     timePassed();
 
 }
 
 function getImage(i1, i2) {
     switch(imageType){
+        //todo more image types
         case 'random':
             //todo, imageType = random
         case 'picsum':
@@ -150,6 +152,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+//todo geen async gebruiken?
 async function timePassed() {
     var doc = document.getElementById("timer");
     let i = 0;
