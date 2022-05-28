@@ -4,6 +4,7 @@ body {
 
 .page-container {
     width:fit-content;
+    margin: 0 auto;
 }
 
 .card {
@@ -144,12 +145,13 @@ button:hover, select:hover, input:hover {
 }
 
 .pop-up .you-won {
-    position: absolute;
+    position: relative;
     width: 160px;
     top: 35%;
-    left: 35%;
-    background-color: whitesmoke;
+    margin: 0 auto;
+    background-color:gold;
     border-radius: 0.375em;
+    border-color: black;
     text-align: center;
     padding: 50px;
 }
