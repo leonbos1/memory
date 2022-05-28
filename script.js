@@ -26,8 +26,8 @@ window.onload = function() {
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
         i2 = gridIndexes.splice(randomIndex, 1);
         getPicsumImage(i1, i2)
-        // document.getElementById(`card-${randomGridCard}`).innerHTML = `<p>${randomLetter}</p>`
-        
+        document.getElementById(`card-${i1}`).classList.add(`card-${randomLetter}`)
+        document.getElementById(`card-${i2}`).classList.add(`card-${randomLetter}`)
 
     }
 
@@ -58,18 +58,19 @@ var selectedCards = [];
 
 function openCard(event){
     let current = event.currentTarget;
-    if (current.className === 'closed card'){
+    if (current.classList.contains('closed')){
         if (selectedCards.length === 2){
-            changeCards('closed card');
+            changeCards('open', 'closed');
         }
 
-        current.className = 'open card';
-        current.ariaLabel = 'open card';
+        current.classList.remove('closed')
+        current.classList.add('open')
+        current.ariaLabel = 'open';
         selectedCards.push(current);
 
         if (selectedCards.length === 2){
-            if (selectedCards[0].innerText === selectedCards[1].innerText){
-                changeCards('found card');
+            if (selectedCards[0].className === selectedCards[1].className){
+                changeCards('open', 'found');
             }
             if (document.getElementsByClassName("closed").length === 0){
                 gameWon();
@@ -79,12 +80,14 @@ function openCard(event){
     }
 }
 
-function changeCards(name){
-    selectedCards[0].className = name;
-    selectedCards[1].className = name; 
-    selectedCards[0].ariaLabel = name;
-    selectedCards[1].ariaLabel = name; 
-    selectedCards = []; 
+function changeCards(current, change){
+    selectedCards[0].classList.remove(current);
+    selectedCards[1].classList.remove(current);
+    selectedCards[0].classList.add(change);
+    selectedCards[1].classList.add(change); 
+    selectedCards[0].ariaLabel = change;
+    selectedCards[1].ariaLabel = change; 
+    selectedCards = [];
 }
 
 function gameWon(){
