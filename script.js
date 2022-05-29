@@ -12,6 +12,16 @@ window.onload = function() {
         newGame()
     })
 
+    let colorPicker = document.getElementById("card-color")
+    colorPicker.addEventListener("change", function(event) {
+        let items = document.getElementsByClassName("closed")
+        for (let i = 0; i < (gridSize**2); i++) {    
+            document.getElementById(`card-${i}`).style.backgroundColor = event.currentTarget.value
+        }
+    })
+
+
+
 };
 
 function createCardGrid(){
