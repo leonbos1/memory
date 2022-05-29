@@ -1,0 +1,9 @@
+Een van de redenen dat andere talen dan javascript worden overwogen, is dat er heel veel libraries en frameworks worden gemaakt.
+Dit zorgt er voor dat er veel developers zijn die wel overweg kunnen met een bepaalde framework maar die niet exact weten hoe javascript werkt.
+Wanneer developers alleen overweg kunnen met een framework/library, is het mogelijk dat hackers de 'gaten'kunnen exploiten waar de developers niet om hebben gedacht.
+Javscript kan dus beveiligings risico's met zich meebrengen.
+
+Ik denk zelf niet dat dit een reden is om de hele taal te vervangen. 
+Het is eenvoudiger om er voor te zorgen dat huidige developers meer verstand krijgen van Javascript.
+Javascript is namelijk ook een van de makkelijkere programmeertalen.
+Overigens werkt Javascript op dit moment in bijna alle browsers. Om een nieuwe taal werkend te krijgen in alle browsers zou veel werk zijn.
