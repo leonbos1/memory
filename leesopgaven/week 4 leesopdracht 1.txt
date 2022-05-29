@@ -1,0 +1,8 @@
+De impact van JavaScript op webpagina's kan je testen door JavaScript in je browser uit te zetten.
+Facebook laadt helemaal niet zonder JavaScript
+Instagram laat een icoon zien en laadt verder ook niet.
+Twitter geeft een melding dat JavaScript uitstaat en werkt ook niet zonder JavaScript.
+YouTube laadt alleen een gedeelte van de interface en verder niks.
+GitHub laadt de pagina, maar alle menu's werken niet meer. Je kan nog wel code op een specifieke repo bekijken, maar alle functionaliteiten zijn weg.
+Al deze sites werken dus niet of nauwelijks zonder JavaScript. Het valt me op dat alleen Twitter een waarschuwing geeft dat JavaScript uitstaat. De rest doet het gewoon niet.
+Een site die het nog wel doet is Google. Alleen zien de resultaten en zoekbalk er wel iets anders uit. Ook zijn er geen zoeksuggesties meer.
