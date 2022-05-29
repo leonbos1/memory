@@ -1,7 +1,10 @@
-var gridSize = 2;
+var gridSize = 6;
 var imageType = "dogs" // dogs, picsum, random, memes ...
+var playing = true;
+var timePassed = 0;
 
 window.onload = function() {
+    setTimeout("Timer()", 1000);
     createCardGrid()
     newGame()
     let imageButton = document.getElementById("images")
@@ -21,6 +24,7 @@ function createCardGrid(){
 }
 
 function newGame(){
+    timePassed = 0;
     var gridIndexes = []
     selectedCards = []
     document.querySelectorAll('.card').forEach(
@@ -62,9 +66,6 @@ function newGame(){
             }
         });
     }
-
-    //todo reset nog niet
-    timePassed();
 
 }
 
@@ -169,19 +170,14 @@ function gameWon(){
 
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 //todo werkt niet bij new game
-async function timePassed() {
-    var doc = document.getElementById("timer");
-    let i = 0;
+function Timer(){
 
-    while (1===1) {
-        await sleep(1000);
-        doc.innerText = `Time passed: ${i} seconds`
-        i++;
-      
+    timePassed++;
+    var doc = document.getElementById("timer");
+    doc.innerText = `Time passed: ${timePassed} seconds`;
+    if (playing) {
+        setTimeout("Timer()",1000)
     }
+    
 }
