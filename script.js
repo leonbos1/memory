@@ -1,10 +1,14 @@
 var gridSize = 2;
-var imageType = "picsum" // dog, picsum, random, monster ...
+var imageType = "dogs" // dogs, picsum, random, memes ...
 
 window.onload = function() {
     createCardGrid()
     newGame()
-
+    let imageButton = document.getElementById("images")
+    imageButton.addEventListener("change", function(event) {
+        imageType = event.currentTarget.value
+        newGame()
+    })
 };
 
 function createCardGrid(){
@@ -18,6 +22,7 @@ function createCardGrid(){
 
 function newGame(){
     var gridIndexes = []
+    selectedCards = []
     document.querySelectorAll('.card').forEach(
         card => card.className = "closed card"
     )
@@ -65,16 +70,17 @@ function newGame(){
 
 function getImage(i1, i2) {
     switch(imageType){
-        //todo more image types
         case 'random':
-            //todo, imageType = random
+            let random = ['picsum', 'dogs', 'memes']
+            let randomIndex = Math.floor(Math.random() * 3)
+            imageType = random[randomIndex]
         case 'picsum':
             getPicsumImage(i1, i2)
             break;
-        case 'dog':
+        case 'dogs':
             getDogImage(i1, i2)
             break;
-        case 'meme':
+        case 'memes':
             getMemeImage(i1, i2)
     }
 }
