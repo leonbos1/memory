@@ -1,5 +1,5 @@
-var gridSize = 6;
-var imageType = "dog" // dog, picsum, random, ...
+var gridSize = 2;
+var imageType = "picsum" // dog, picsum, random, monster ...
 
 window.onload = function() {
     createCardGrid()
@@ -74,7 +74,22 @@ function getImage(i1, i2) {
         case 'dog':
             getDogImage(i1, i2)
             break;
+        case 'meme':
+            getMemeImage(i1, i2)
     }
+}
+
+function getMemeImage(i1, i2){
+    fetch("https://api.imgflip.com/get_memes")
+    .then(response => response.json())
+    .then( response => {
+        let randomIndex = Math.floor(Math.random() * response.data.memes.length)
+        let meme = response.data.memes[randomIndex]
+        el = document.getElementById(`card-${i1}-img`)
+        el.src = meme.url
+        el = document.getElementById(`card-${i2}-img`)
+        el.src = meme.url
+    })
 }
 
 function getDogImage(i1, i2){
