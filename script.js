@@ -1,5 +1,5 @@
 var gridSize = 6;
-var imageType = "dog"
+var imageType = "dog" // dog, picsum, random, ...
 
 window.onload = function() {
     createCardGrid()
