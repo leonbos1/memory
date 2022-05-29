@@ -36,8 +36,8 @@ function newGame(){
     for (let j = 0; j < (gridSize**2/2); j++) {
         //index for choosing random letter
         //not in use atm
-        let randomIndex = Math.floor(Math.random() * charArray.length);
-        let randomLetter = charArray.splice(randomIndex, 1)
+        // let randomIndex = Math.floor(Math.random() * charArray.length);
+        // let randomLetter = charArray.splice(randomIndex, 1)
 
         //choosing random grid card
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
@@ -173,7 +173,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-//todo geen async gebruiken?
+//todo werkt niet bij new game
 async function timePassed() {
     var doc = document.getElementById("timer");
     let i = 0;
