@@ -1,10 +1,9 @@
 var gridSize = 6;
 var imageType = "dogs" // dogs, picsum, random, memes ...
-var playing = true;
 var timePassed = 0;
 
 window.onload = function() {
-    setTimeout("Timer()", 1000);
+
     createCardGrid()
     newGame()
     let imageButton = document.getElementById("images")
@@ -12,6 +11,7 @@ window.onload = function() {
         imageType = event.currentTarget.value
         newGame()
     })
+
 };
 
 function createCardGrid(){
@@ -23,8 +23,11 @@ function createCardGrid(){
     }
 }
 
+
 function newGame(){
+    playing = true;
     timePassed = 0;
+    setTimeout("Timer()", 1000);
     var gridIndexes = []
     selectedCards = []
     document.querySelectorAll('.card').forEach(
@@ -86,6 +89,7 @@ function getImage(i1, i2) {
     }
 }
 
+//geeft soms meerdere paren met dezelfde plaatjes
 function getMemeImage(i1, i2){
     fetch("https://api.imgflip.com/get_memes")
     .then(response => response.json())
@@ -158,13 +162,15 @@ function changeCards(current, change){
 
 function gameWon(){
     document.getElementById("new-game-pop-up").style.display = "block";
-    // stop time
-    // show time?
-    // top 5
+
+    playing = false;
+    let timeUsed = document.getElementById("time-used");
+    timeUsed.innerText = `It took you ${timePassed} seconds to complete the game.`;
 
     // new game?
     document.getElementById("new-game").addEventListener('click', function() {
-        document.getElementById("new-game-pop-up").style.display = "none"
+        document.getElementById("new-game-pop-up").style.display = "none";
+        console.log("test")
         newGame();
     })
 
@@ -172,10 +178,9 @@ function gameWon(){
 
 //todo werkt niet bij new game
 function Timer(){
-
-    timePassed++;
     var doc = document.getElementById("timer");
     doc.innerText = `Time passed: ${timePassed} seconds`;
+    timePassed++;
     if (playing) {
         setTimeout("Timer()",1000)
     }
