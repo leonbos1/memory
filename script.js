@@ -3,10 +3,18 @@ var imageType = "dogs" // dogs, picsum, random, memes ...
 var timePassed = 0;
 
 window.onload = function() {
-
     createCardGrid()
     newGame()
     updateScoreboard();
+
+    document.getElementById("login").addEventListener("click", function() {
+        window.location.href="login.html";
+    })
+
+    document.getElementById("register").addEventListener("click", function() {
+        window.location.href="register.html";
+    })
+
     let imageButton = document.getElementById("images")
     imageButton.addEventListener("change", function(event) {
         imageType = event.currentTarget.value
@@ -14,7 +22,6 @@ window.onload = function() {
     })
 
     let colorPicker = document.getElementById("card-color")
-
     colorPicker.addEventListener("change", function(event) {
         let items = document.getElementsByClassName("closed")
         for (let i = 0; i < (gridSize**2); i++) {    
@@ -31,7 +38,6 @@ function createCardGrid(){
         </div>`;
     }
 }
-
 
 function newGame(){
     playing = true;
@@ -218,5 +224,27 @@ function Timer(){
     if (playing) {
         setTimeout("Timer()",1000)
     }
-    
+}
+
+async function request(type,){
+    let headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+    await fetch(
+        LOGIN_URL,
+        {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(data)
+        },
+    ).then((response) => response.json()) 
+    .then((result) => {
+        let token = result.token;
+        console.log(token)
+        localStorage.setItem('token', token)
+    })
+    .catch(function (err) {
+        console.log(err.message)
+    });
 }
