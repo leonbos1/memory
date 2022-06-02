@@ -144,16 +144,16 @@ async function updateScoreboard() {
     let newScoreboard = await getScores();
 
     for (let i = 0; i < newScoreboard.length; i++) {
-        document.getElementById(`sb-${i}`).innerText = newScoreboard[i].username;
+        document.getElementById(`sb-${i}`).innerText = newScoreboard[i].username + ", " + newScoreboard[i].score + " seconds";
     }
 }
 
 function compareScores(a, b) {
    if (a.score > b.score) {
-       return -1;
+       return 1;
    }
    if (a.score < b.score) {
-       return 1;
+       return -1;
    }
    return 0;
 }
