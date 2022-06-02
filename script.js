@@ -6,6 +6,7 @@ window.onload = function() {
 
     createCardGrid()
     newGame()
+    updateScoreboard();
     let imageButton = document.getElementById("images")
     imageButton.addEventListener("change", function(event) {
         imageType = event.currentTarget.value
@@ -13,15 +14,13 @@ window.onload = function() {
     })
 
     let colorPicker = document.getElementById("card-color")
+
     colorPicker.addEventListener("change", function(event) {
         let items = document.getElementsByClassName("closed")
         for (let i = 0; i < (gridSize**2); i++) {    
             document.getElementById(`card-${i}`).style.backgroundColor = event.currentTarget.value
         }
     })
-
-
-
 };
 
 function createCardGrid(){
@@ -134,6 +133,31 @@ function getPicsumImage(i1, i2){
     })
 }
 
+async function getScores(){
+    let response = await fetch("http://localhost:8000/scores");
+    let scoresJson = await response.json();
+    let scores = scoresJson.sort(compareScores);
+    return scores;
+}
+
+async function updateScoreboard() {
+    let newScoreboard = await getScores();
+
+    for (let i = 0; i < newScoreboard.length; i++) {
+        document.getElementById(`sb-${i}`).innerText = newScoreboard[i].username;
+    }
+}
+
+function compareScores(a, b) {
+   if (a.score > b.score) {
+       return -1;
+   }
+   if (a.score < b.score) {
+       return 1;
+   }
+   return 0;
+}
+
 var selectedCards = [];
 
 function openCard(event){
@@ -186,7 +210,7 @@ function gameWon(){
 
 }
 
-//todo werkt niet bij new game
+//is nogsteeds heel bugged oeps
 function Timer(){
     var doc = document.getElementById("timer");
     doc.innerText = `Time passed: ${timePassed} seconds`;
