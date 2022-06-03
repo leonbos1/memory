@@ -18,12 +18,12 @@ window.onload = function() {
         postLogin(data);
     }
 
-    async function postLogin(data){
+    function postLogin(data){
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
-        await fetch(
+        fetch(
             LOGIN_URL,
             {
                 method: "POST",

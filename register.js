@@ -9,10 +9,6 @@ window.onload = function() {
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
 
-        console.log(username);
-        console.log(email);
-        console.log(password);
-
         register(username, email, password);
 
 
@@ -30,12 +26,12 @@ window.onload = function() {
 
     }
 
-    async function postRegister(data){
+    function postRegister(data){
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
-        await fetch(
+        fetch(
             REGISTER_URL,
             {
                 method: "POST",

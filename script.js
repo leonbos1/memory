@@ -138,20 +138,16 @@ function getPicsumImage(i1, i2){
         el.src = response.url
     })
 }
-
-async function getScores(){
-    let response = await fetch("http://localhost:8000/scores");
-    let scoresJson = await response.json();
-    let scores = scoresJson.sort(compareScores);
-    return scores;
-}
-
-async function updateScoreboard() {
-    let newScoreboard = await getScores();
-
-    for (let i = 0; i < newScoreboard.length; i++) {
-        document.getElementById(`sb-${i}`).innerText = newScoreboard[i].username + ", " + newScoreboard[i].score + " seconds";
-    }
+        
+function updateScoreboard() {
+    fetch("http://localhost:8000/scores")
+    .then(response => response.json())
+    .then ( response => {
+        let sortedScores = response.sort(compareScores)
+        for (let i = 0; i < sortedScores.length; i++) {
+            document.getElementById(`sb-${i}`).innerText = sortedScores[i].username + ", " + sortedScores[i].score + " seconds";
+        }
+    })
 }
 
 function compareScores(a, b) {
@@ -226,12 +222,13 @@ function Timer(){
     }
 }
 
-async function request(type,){
+//moet request handler service worden 
+function request(type){
     let headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     };
-    await fetch(
+    fetch(
         LOGIN_URL,
         {
             method: "POST",
