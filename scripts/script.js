@@ -1,12 +1,7 @@
 var gridSize = 6;
 var imageType = "dogs" // dogs, picsum, random, memes ...
-var timePassed = 0;
 
 window.onload = function() {
-    createCardGrid()
-    newGame()
-    updateScoreboard();
-
     document.getElementById("login").addEventListener("click", function() {
         window.location.href="login.html";
     })
@@ -14,6 +9,8 @@ window.onload = function() {
     document.getElementById("register").addEventListener("click", function() {
         window.location.href="register.html";
     })
+
+    document.getElementById("newgame").addEventListener("click", newGame);
 
     let imageButton = document.getElementById("images")
     imageButton.addEventListener("change", function(event) {
@@ -28,6 +25,11 @@ window.onload = function() {
             document.getElementById(`card-${i}`).style.backgroundColor = event.currentTarget.value
         }
     })
+
+    createCardGrid();
+    newGame();
+    updateScoreboard();
+    Timer();
 };
 
 function createCardGrid(){
@@ -40,9 +42,7 @@ function createCardGrid(){
 }
 
 function newGame(){
-    playing = true;
     timePassed = 0;
-    setTimeout("Timer()", 1000);
     var gridIndexes = []
     selectedCards = []
     document.querySelectorAll('.card').forEach(
@@ -206,7 +206,6 @@ function gameWon(){
     // new game?
     document.getElementById("new-game").addEventListener('click', function() {
         document.getElementById("new-game-pop-up").style.display = "none";
-        console.log("test")
         newGame();
     })
 
@@ -217,31 +216,25 @@ function Timer(){
     var doc = document.getElementById("timer");
     doc.innerText = `Time passed: ${timePassed} seconds`;
     timePassed++;
-    if (playing) {
-        setTimeout("Timer()",1000)
-    }
+    setTimeout("Timer()",1000)
 }
 
-//moet request handler service worden 
-function request(type){
-    let headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    };
-    fetch(
-        LOGIN_URL,
-        {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(data)
-        },
-    ).then((response) => response.json()) 
-    .then((result) => {
-        let token = result.token;
-        console.log(token)
-        localStorage.setItem('token', token)
+function request(method, url, body) {
+
+    let options = {
+        method: method,
+        headers: {
+            'Content-Type':'application/json;charset=utf-8',
+            'Authorization':'Bearer ' + localStorage.getItem('token')
+        }
+    }
+    if (method ==='POST'||method==='PUT') {
+        options.body = JSON.stringify(body);
+    }
+
+    let response = fetch(url, options);
+    response.then(result => result.json())
+    .then(d => {
+        return d;
     })
-    .catch(function (err) {
-        console.log(err.message)
-    });
 }

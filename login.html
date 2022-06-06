@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width", initial-scale=1>
 		<title>Memory!</title>
-		<link rel="stylesheet" href="./style.css">
-        <script src="./login.js"></script>
+		<link rel="stylesheet" href="/styles/login-register.css">
+        <script src="/scripts/login.js"></script>
 		<!-- links to Lato font -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,15 +15,18 @@
 
     <body>
         <div class="page-container"> 
-            <div class="login-container">
+            <div class="container box">
+
 
                 <h1>Login</h1>
+                <p>Please enter your credentials</p>
 
-                <p>Username</p>
-                <input id="username" type="text"/>
-                <p>Password</p>
-                <input id="password" type="text"/>
-                <button id="submit">Submit</button>
+                <input placeholder="Username" id="username" type="text"/>
+                <input placeholder="Password" id="password" type="password"/>
+                <button id="submit">Login</button>
+                <button id="back">Back</button>
+                <p>Not registered? <a href="/register.html">Create an account</a></p>
+
             </div>
         </div>
     </body>
