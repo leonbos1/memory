@@ -19,6 +19,7 @@ body {
     max-height: 100%;
     margin: 0 auto;
     margin-top: 3%;
+    margin-bottom: 3%;
     aspect-ratio: 1 / 1;
     padding-bottom: 30px;
 }
@@ -176,7 +177,7 @@ button:hover, select:hover, input:hover {
     padding: 50px;
 }
 
-@media all and (min-width: 820px){ /** desktop versie*/
+@media all and (min-width: 1200px){ /** desktop versie*/
     .body {
         max-height: 100vh;
     }

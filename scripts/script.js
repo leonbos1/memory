@@ -11,6 +11,8 @@ window.onload = function() {
     })
 
     document.getElementById("newgame").addEventListener("click", newGame);
+    
+    document.getElementById("dimensions").addEventListener("change", changeGridSize);
 
     let imageButton = document.getElementById("images")
     imageButton.addEventListener("change", function(event) {
@@ -34,6 +36,7 @@ window.onload = function() {
 
 function createCardGrid(){
     let grid = document.getElementById("grid");
+    grid.innerHTML = "";
     for (let i = 0; i < (gridSize**2); i++) {    
         grid.innerHTML += `<div id=card-${i} class="closed card" tabindex="0" aria-label="closed card">
         <img id=card-${i}-img></img>
@@ -45,6 +48,7 @@ function newGame(){
     timePassed = 0;
     var gridIndexes = []
     selectedCards = []
+    createCardGrid();
     document.querySelectorAll('.card').forEach(
         card => card.className = "closed card"
     )
@@ -53,13 +57,7 @@ function newGame(){
         gridIndexes.push(i);
     }
 
-    var charArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-
     for (let j = 0; j < (gridSize**2/2); j++) {
-        //index for choosing random letter
-        //not in use atm
-        // let randomIndex = Math.floor(Math.random() * charArray.length);
-        // let randomLetter = charArray.splice(randomIndex, 1)
 
         //choosing random grid card
         randomIndex = Math.floor(Math.random() * gridIndexes.length);
@@ -161,6 +159,22 @@ function compareScores(a, b) {
 }
 
 var selectedCards = [];
+
+function changeGridSize() {
+ 
+    let size = document.getElementById("dimensions").value;
+    let styleString = ''
+    
+    for (let i = 0; i < size; i++) {
+        styleString+='1fr '
+    }
+
+    gridSize = size;
+    document.getElementsByClassName("grid-container")[0].style.gridTemplateColumns = styleString;
+ 
+    newGame()
+    
+}
 
 function openCard(event){
     let current = event.currentTarget;
