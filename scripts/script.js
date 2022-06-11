@@ -1,7 +1,8 @@
 var gridSize = 6;
 const gameLength = 300;
 var timeRemaining = 300;
-var imageType = "dogs" // dogs, picsum, random, memes ...
+var pairsFound = 0;
+var imageType = "dogs"
 
 window.onload = function() {
     document.getElementById("login").addEventListener("click", function() {
@@ -45,6 +46,8 @@ function createCardGrid(){
 }
 
 function newGame(){
+    pairsFound = 0;
+    updatePairsFound();
     timePassed = 0;
     timeRemaining = gameLength;
     var gridIndexes = []
@@ -210,6 +213,8 @@ function openCard(event){
 
         if (selectedCards.length === 2){
             if (selectedCards[0].className === selectedCards[1].className){
+                pairsFound++;
+                updatePairsFound();
                 changeCards('open', 'found');
             }
             if (document.getElementsByClassName("closed").length === 0){
@@ -218,6 +223,11 @@ function openCard(event){
 
         }
     }
+}
+
+function updatePairsFound() {
+
+    document.getElementById("pairs-found").innerHTML = `Pairs found: ${pairsFound}`;
 }
 
 function changeCards(current, change){
