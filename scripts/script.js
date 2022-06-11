@@ -12,6 +12,10 @@ window.onload = function() {
     document.getElementById("register").addEventListener("click", function() {
         window.location.href="register.html";
     })
+
+    document.getElementById("newgame").addEventListener("click", function() {
+        newGame();
+    })
     
     document.getElementById("dimensions").addEventListener("change", changeGridSize);
 
