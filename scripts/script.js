@@ -1,4 +1,6 @@
 var gridSize = 6;
+const gameLength = 300;
+var timeRemaining = 300;
 var imageType = "dogs" // dogs, picsum, random, memes ...
 
 window.onload = function() {
@@ -9,8 +11,6 @@ window.onload = function() {
     document.getElementById("register").addEventListener("click", function() {
         window.location.href="register.html";
     })
-
-    document.getElementById("newgame").addEventListener("click", newGame);
     
     document.getElementById("dimensions").addEventListener("change", changeGridSize);
 
@@ -46,6 +46,7 @@ function createCardGrid(){
 
 function newGame(){
     timePassed = 0;
+    timeRemaining = gameLength;
     var gridIndexes = []
     selectedCards = []
     createCardGrid();
@@ -176,6 +177,25 @@ function changeGridSize() {
     
 }
 
+function updateTimeRemaining() {
+    if (timeRemaining > 0) {
+        timeRemaining--;
+    } else {
+        document.getElementById("game-over-pop-up").style.display = "block";
+        document.getElementById("game-over").addEventListener('click', function() {
+            document.getElementById("game-over-pop-up").style.display = "none";
+            newGame();
+        })
+    }
+
+    let timeRemainingBarDiv = document.getElementsByClassName("time-remaining-in");
+    let timeRemainingNumberDiv = document.getElementById("time-remaining");
+    let remainingPercentage = 100 * timeRemaining / gameLength;
+
+    timeRemainingBarDiv[0].style.width = `${remainingPercentage}%`;
+    timeRemainingNumberDiv.innerHTML = timeRemaining;
+}
+
 function openCard(event){
     let current = event.currentTarget;
     if (current.classList.contains('closed')){
@@ -217,7 +237,6 @@ function gameWon(){
     let timeUsed = document.getElementById("time-used");
     timeUsed.innerText = `It took you ${timePassed} seconds to complete the game.`;
 
-    // new game?
     document.getElementById("new-game").addEventListener('click', function() {
         document.getElementById("new-game-pop-up").style.display = "none";
         newGame();
@@ -225,8 +244,8 @@ function gameWon(){
 
 }
 
-//is nogsteeds heel bugged oeps
 function Timer(){
+    updateTimeRemaining()
     var doc = document.getElementById("timer");
     doc.innerText = `Time passed: ${timePassed} seconds`;
     timePassed++;

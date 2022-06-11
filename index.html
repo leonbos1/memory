@@ -18,9 +18,11 @@
 				<h1 class="title">Memory!</h1>
 				<p id="timer" aria-label="Time passed">Time passed: 0 seconds</p> 
 				<p aria-label="Pairs found">Pairs found: 1</p> 
-				<p aria-label="Time remaining">Time remaining: <br>
-					<progress value="75" max="100" class="time-remaining"></progress>
-				</p>
+				
+				<div class="time-remaining-out">
+					<div id="time-remaining" class="time-remaining-in">300</div>
+				</div>
+			
 			</div>
 			<div id="grid" class="grid-container left" aria-label="Memory cards">
 			</div>
@@ -88,6 +90,14 @@
 				<h1>You Won!</h1>
 				<p id="time-used"></p>
 				<button type="button" id="new-game">New game?</button>
+			</div>
+		</div>
+
+		<div class="pop-up" id="game-over-pop-up">
+			<div class="game-over" id="game-over-pop-up-window">
+				<h1>Game over!</h1>
+				<p>You ran out of time!</p>
+				<button type="button" id="game-over">New game?</button>
 			</div>
 		</div>
 	</body>
