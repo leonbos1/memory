@@ -33,7 +33,7 @@ function getUserID(){
     return token['sub']
 }
 
-function getPreferences(){ //todo
+function getPreferences(){
     let id = getUserID(jwt)
     let url = `http://localhost:8000/api/player/${id}/preferences`
     request('GET', url)

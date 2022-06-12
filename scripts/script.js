@@ -1,12 +1,10 @@
 var gridSize = 6;
-var imageType = "dogs" // dogs, picsum, random, memes ...
+var imageType = "" // dogs, picsum, random, memes ...
 
 window.onload = function() {
     if(localStorage.getItem('token') === null){
         window.location.href="login.html";        
     }
-
-    checkJwtTime()
 
     // document.getElementById("login").addEventListener("click", function() {
     //     window.location.href="login.html";
@@ -22,8 +20,6 @@ window.onload = function() {
 
     document.getElementById("newgame").addEventListener("click", newGame);
 
-    // TODO use user favorites
-
     let imageButton = document.getElementById("images")
     imageButton.addEventListener("change", function(event) {
         imageType = event.currentTarget.value
@@ -32,16 +28,16 @@ window.onload = function() {
 
     let colorPicker = document.getElementById("card-color")
     colorPicker.addEventListener("change", function(event) {
-        let items = document.getElementsByClassName("closed")
-        for (let i = 0; i < (gridSize**2); i++) {    
-            document.getElementById(`card-${i}`).style.backgroundColor = event.currentTarget.value
-        }
+        changeCardColor('closed', event.currentTarget.value)
     })
 
-    createCardGrid();
-    newGame();
-    updateScoreboard();
-    Timer();
+    checkJwtTime();
+    createCardGrid()
+    getFavorites().then( response => {
+        newGame()
+        updateScoreboard();
+        Timer();
+    })
 };
 
 function createCardGrid(){
@@ -93,6 +89,7 @@ function newGame(){
 }
 
 function getImage(i1, i2) {
+    console.log(imageType)
     switch(imageType){
         case 'random':
             let random = ['picsum', 'dogs', 'memes']
@@ -106,6 +103,7 @@ function getImage(i1, i2) {
             break;
         case 'memes':
             getMemeImage(i1, i2)
+            break;
     }
 }
 
@@ -201,6 +199,13 @@ function changeCards(current, change){
     selectedCards = [];
 }
 
+function changeCardColor(cardType, color){
+    cards = document.getElementsByClassName(cardType)
+    for (let i = 0; i < (cards.length); i++) {    
+        cards[i].style.backgroundColor = color
+    }
+}
+
 function gameWon(){
     document.getElementById("new-game-pop-up").style.display = "block";
 
@@ -216,6 +221,30 @@ function gameWon(){
 
 }
 
+function getFavorites(){
+    let jwt = parseJwt(localStorage.getItem('token'))
+    let id = jwt['sub']
+    let url = `http://localhost:8000/api/player/${id}/preferences`
+    return request('GET', url)
+    .then( response => {
+        if (response.status === 200){
+            return response.json()
+        }
+        else {
+            console.log(response)
+        }
+    })
+    .then (response => {
+        console.log(response)
+        document.getElementById('images').value = response['preferred_api']
+        document.getElementById('card-color').value = response['color_closed']
+        document.getElementById('found-card').value = response['color_found']
+        imageType = response['preferred_api']
+        changeCardColor('closed', response['color_closed'])
+    })    
+
+}
+
 //is nogsteeds heel bugged oeps
 function Timer(){
     var doc = document.getElementById("timer");
@@ -223,25 +252,22 @@ function Timer(){
     timePassed++;
     setTimeout("Timer()",1000)
 }
-
 function request(method, url, body) {
+    let jwt = localStorage.getItem('token')
 
     let options = {
         method: method,
         headers: {
             'Content-Type':'application/json;charset=utf-8',
-            'Authorization':'Bearer ' + localStorage.getItem('token')
+            'Authorization':`Bearer ${jwt}`
         }
     }
     if (method ==='POST'||method==='PUT') {
         options.body = JSON.stringify(body);
     }
 
-    let response = fetch(url, options);
-    response.then(result => result.json())
-    .then(d => {
-        return d;
-    })
+    return fetch(url, options)
+
 }
 
 
