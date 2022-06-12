@@ -291,11 +291,25 @@ function getFavorites(){
     })
     .then (response => {
         // console.log(response)
-        document.getElementById('images').value = response['preferred_api']
-        document.getElementById('card-color').value = response['color_closed']
-        document.getElementById('found-card').value = response['color_found']
-        imageType = response['preferred_api']
-        closedCardColor = response['color_closed']
+        let api = response['preferred_api']
+        let closed = response['color_closed']
+        let found = response['color_found']
+        if (api){
+            imageType = api
+        } else {
+            imageType = "random"
+        }
+        if (closed){
+            closedCardColor = closed
+        } else {
+            closedCardColor = "#0004ff"
+        }
+        if (!found){
+            found = "#00ff37"
+        }
+        document.getElementById('images').value = imageType
+        document.getElementById('card-color').value = closedCardColor
+        document.getElementById('found-card').value = found
     })    
 
 }
