@@ -2,21 +2,27 @@ var gridSize = 6;
 var imageType = "dogs" // dogs, picsum, random, memes ...
 
 window.onload = function() {
+    if(localStorage.getItem('token') === null){
+        window.location.href="login.html";        
+    }
+
     checkJwtTime()
 
-    document.getElementById("login").addEventListener("click", function() {
-        window.location.href="login.html";
-    })
+    // document.getElementById("login").addEventListener("click", function() {
+    //     window.location.href="login.html";
+    // })
 
-    document.getElementById("register").addEventListener("click", function() {
-        window.location.href="register.html";
-    })
+    // document.getElementById("register").addEventListener("click", function() {
+    //     window.location.href="register.html";
+    // })
 
     document.getElementById("account").addEventListener("click", function() {
         window.location.href="account.html";
     })
 
     document.getElementById("newgame").addEventListener("click", newGame);
+
+    // TODO use user favorites
 
     let imageButton = document.getElementById("images")
     imageButton.addEventListener("change", function(event) {
@@ -243,11 +249,9 @@ function checkJwtTime(){
     var jwt = parseJwt(localStorage.getItem('token'))
     if (Date.now() > jwt['exp']*1000){
         window.alert('Your login session has expired, please login again')
-        window.location.href="login.html";
+        window.location.href="login.html";    
     }
-    else {
-        setTimeout("checkJwtTime()",1000)
-    }       
+    setTimeout("checkJwtTime()", 1000)
 }
 
 // from https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
@@ -259,4 +263,4 @@ function parseJwt (token) {
     }).join(''));
 
     return JSON.parse(jsonPayload);
-};
+}
