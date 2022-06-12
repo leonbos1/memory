@@ -10,6 +10,10 @@ window.onload = function() {
         window.location.href="register.html";
     })
 
+    document.getElementById("account").addEventListener("click", function() {
+        window.location.href="account.html";
+    })
+
     document.getElementById("newgame").addEventListener("click", newGame);
 
     let imageButton = document.getElementById("images")

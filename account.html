@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width", initial-scale=1>
+		<title>Memory!</title>
+		<link rel="stylesheet" href="/styles/account.css">
+        <link rel="stylesheet" href="/styles/index.css">
+        <script src="/scripts/account.js"></script>
+		<!-- links to Lato font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+	</head>
+    <body>
+        <div class="account-container">
+            <div>
+                <h1> Account </h1>
+            </div>
+            <div class="preferences" aria-label="preferences">
+                <h2> Preferences </h2>
+                <div class="pr50">
+                    <label for="images">Favorite card images:</label>
+                </div>
+                <div class="pr50">
+                    <select name="images" id="images">
+                        <option value="dogs">Dogs</option>
+                        <option value="picsum">Picsum</option>
+                        <option value="memes">Memes</option>
+                        <option value="random">Choose for me!</option>
+                    </select>
+                </div>
+                <div class="pr50">
+                    <label for="card-color">Favorite card color:</label>
+                </div>
+                <div class="pr50">
+                    <input type="color" value="#0004ff" id="card-color" />
+                </div> 
+                <div class="pr50">
+                    <label for="found-card">Favorite found card color: </label>
+                </div>
+                <div class="pr50">
+                    <input type="color" value="#00ff37" id="found-card" />
+                </div>
+            </div>
+            <div class="email" aria-label="change e-mail">
+                <div>
+                    <h2>Change e-mail</h2>
+                    <div class="pr50">
+                        <p>Current e-mail:</p>
+                    </div>
+                    <div class="pr50">
+                        <p class="current-email" id="current-email">...</p>
+                    </div>
+                    <div class="pr50">
+                        <label for="new-email">New e-mail:</label>
+                    </div>
+                    <div class="pr50">
+                        <input placeholder="Email" id="email" type="text"/>
+                    </div>
+                </div>
+                <div class="save" aria-label="save settings">
+                    <button id="save">Save settings</button>
+                </div>
+                <div class="back" aria-label="go back">
+                    <button id="back">Go back</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
