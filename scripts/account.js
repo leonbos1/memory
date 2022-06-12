@@ -5,12 +5,21 @@ window.onload = function() {
     document.getElementById("back").addEventListener("click", function() {
         window.location.href="index.html"
     })
+
+    getPreferences()
     getEmail()
 
-    // get/change favorites
+
+    // change favorites
+    document.getElementById("save-preferences").addEventListener("click", function() {
+        let image = document.getElementById("images").value    
+        let cardColor = document.getElementById('card-color').value
+        let foundCard = document.getElementById('found-card').value
+        changePreferences(image, cardColor, foundCard)
+    })
 
     // change email
-    document.getElementById("save").addEventListener("click", function() {
+    document.getElementById("save-email").addEventListener("click", function() {
         let email = document.getElementById("email").value
         if (email != ''){
             changeEmail(email)
@@ -23,26 +32,58 @@ function getUserID(){
     return token['sub']
 }
 
-function getEmail() {
+function getPreferences(){ //todo
     let id = getUserID(jwt)
-    let url = `http://localhost:8000/api/player/${id}/email`
-    let headers = {
-        'Authorization': `Bearer ${jwt}`
-    };
-    fetch(
-        url,
-        {
-            method: "GET",
-            headers: headers,
-        },
-    ).then( response => {
+    let url = `http://localhost:8000/api/player/${id}/preferences`
+    request('GET', url)
+    .then( response => {
         if (response.status === 200){
-            return response
+            return response.json()
         }
         else {
             console.log(response)
         }
-    }).then ( response => response.json())
+    })
+    .then (response => {
+        console.log(response)
+        document.getElementById("images").value = response.preferred_api
+        document.getElementById("card-color").value = response.color_closed
+        document.getElementById("found-card").value = response.color_found
+    })    
+}
+
+function changePreferences(api, closed, found){
+    let id = getUserID(jwt)
+    let url = `http://localhost:8000/api/player/${id}/preferences`
+    let data = {
+        'api' :api,
+        'color_closed' :closed,
+        'color_found' :found
+    }
+
+    request('POST', url, data)
+    .then(response =>{
+        if (response.status === 204){
+            getPreferences()
+        }
+        else {
+            console.log(response)
+        }
+    });
+}
+
+function getEmail() {
+    let id = getUserID(jwt)
+    let url = `http://localhost:8000/api/player/${id}/email`
+    request('GET', url)
+    .then( response => {
+        if (response.status === 200){
+            return response.json()
+        }
+        else {
+            console.log(response)
+        }
+    })
     .then (response => {
         document.getElementById("current-email").innerHTML = response
     })
@@ -52,17 +93,8 @@ function changeEmail(email) {
     let id = getUserID(jwt)
     let url = `http://localhost:8000/api/player/${id}/email`
     let data = {'email': email}
-    let headers = {
-        'Authorization': `Bearer ${jwt}`
-    };
-    fetch(
-        url,
-        {
-            method: "PUT",
-            headers: headers,
-            body: JSON.stringify(data)
-        },
-    ).then(response =>{
+    request('PUT', url, data)
+    .then(response =>{
         if (response.status === 204){
             getEmail()
         }
@@ -70,6 +102,23 @@ function changeEmail(email) {
             console.log(response)
         }
     });
+
+}
+
+function request(method, url, body) {
+
+    let options = {
+        method: method,
+        headers: {
+            'Content-Type':'application/json;charset=utf-8',
+            'Authorization':`Bearer ${jwt}`
+        }
+    }
+    if (method ==='POST'||method==='PUT') {
+        options.body = JSON.stringify(body);
+    }
+
+    return fetch(url, options)
 
 }
 
