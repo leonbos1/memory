@@ -66,6 +66,7 @@ function changePreferences(api, closed, found){
     request('POST', url, data)
     .then(response =>{
         if (response.status === 204){
+            window.alert("Settings changed!")
             getPreferences()
         }
         else {
