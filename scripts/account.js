@@ -1,3 +1,5 @@
+var jwt = localStorage.getItem('token')
+
 window.onload = function() {
 
     document.getElementById("back").addEventListener("click", function() {
@@ -10,21 +12,22 @@ window.onload = function() {
     // change email
     document.getElementById("save").addEventListener("click", function() {
         let email = document.getElementById("email").value
-        changeEmail(email)
+        if (email != ''){
+            changeEmail(email)
+        }
     })
 }
 
 function getUserID(){
-    
-    //json web token
-    //get sub number
+    let token = parseJwt(jwt)
+    return token['sub']
 }
 
 function getEmail() {
-    let url = `http://localhost:8000/api/player/1/email`
-    let token = localStorage.getItem('token')
+    let id = getUserID(jwt)
+    let url = `http://localhost:8000/api/player/${id}/email`
     let headers = {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${jwt}`
     };
     fetch(
         url,
@@ -46,14 +49,11 @@ function getEmail() {
 }
 
 function changeEmail(email) {
-    // let id = getUserID()
-    let url = `http://localhost:8000/api/player/1/email`
+    let id = getUserID(jwt)
+    let url = `http://localhost:8000/api/player/${id}/email`
     let data = {'email': email}
-    let token = localStorage.getItem('token')
     let headers = {
-        // 'Accept': 'application/json',
-        // 'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${jwt}`
     };
     fetch(
         url,
@@ -63,7 +63,6 @@ function changeEmail(email) {
             body: JSON.stringify(data)
         },
     ).then(response =>{
-        console.log(response)
         if (response.status === 204){
             getEmail()
         }
@@ -73,3 +72,14 @@ function changeEmail(email) {
     });
 
 }
+
+// from https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
