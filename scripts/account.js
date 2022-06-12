@@ -1,6 +1,7 @@
 var jwt = localStorage.getItem('token')
 
 window.onload = function() {
+    checkJwtTime()
 
     document.getElementById("back").addEventListener("click", function() {
         window.location.href="index.html"
@@ -51,6 +52,7 @@ function getPreferences(){ //todo
         document.getElementById("found-card").value = response.color_found
     })    
 }
+
 
 function changePreferences(api, closed, found){
     let id = getUserID(jwt)
@@ -120,6 +122,17 @@ function request(method, url, body) {
 
     return fetch(url, options)
 
+}
+
+function checkJwtTime(){
+    var jwt = parseJwt(localStorage.getItem('token'))
+    if (Date.now() > jwt['exp']*1000){
+        window.alert('Your login session has expired, please login again')
+        window.location.href="login.html";
+    }
+    else {
+        setTimeout("checkJwtTime()",1000)
+    }       
 }
 
 // from https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
