@@ -48,6 +48,12 @@ body {
     cursor: pointer;
 }
 
+.box button:hover {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
 input {
     font-family: "Roboto", sans-serif;
     outline: 0;
