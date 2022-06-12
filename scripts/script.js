@@ -89,7 +89,6 @@ function newGame(){
 }
 
 function getImage(i1, i2) {
-    console.log(imageType)
     switch(imageType){
         case 'random':
             let random = ['picsum', 'dogs', 'memes']
@@ -235,7 +234,7 @@ function getFavorites(){
         }
     })
     .then (response => {
-        console.log(response)
+        // console.log(response)
         document.getElementById('images').value = response['preferred_api']
         document.getElementById('card-color').value = response['color_closed']
         document.getElementById('found-card').value = response['color_found']
