@@ -3,6 +3,7 @@ const gameLength = 300;
 var timeRemaining = 300;
 var pairsFound = 0;
 var imageType = "" // dogs, picsum, random, memes ...
+var closedCardColor = ""
 
 window.onload = function() {
     if(localStorage.getItem('token') === null){
@@ -35,11 +36,11 @@ window.onload = function() {
 
     let colorPicker = document.getElementById("card-color")
     colorPicker.addEventListener("change", function(event) {
-        changeCardColor('closed', event.currentTarget.value)
+        closedCardColor = event.currentTarget.value
+        changeCardColor('closed', closedCardColor)
     })
 
     checkJwtTime();
-    createCardGrid()
     getFavorites().then( response => {
         newGame()
         updateScoreboard();
@@ -65,6 +66,7 @@ function newGame(){
     var gridIndexes = []
     selectedCards = []
     createCardGrid();
+    changeCardColor('closed', closedCardColor)
     document.querySelectorAll('.card').forEach(
         card => card.className = "closed card"
     )
@@ -293,7 +295,7 @@ function getFavorites(){
         document.getElementById('card-color').value = response['color_closed']
         document.getElementById('found-card').value = response['color_found']
         imageType = response['preferred_api']
-        changeCardColor('closed', response['color_closed'])
+        closedCardColor = response['color_closed']
     })    
 
 }
