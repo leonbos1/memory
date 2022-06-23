@@ -43,6 +43,8 @@ export class AuthService {
   }
 
   isAdmin(token:String) {
+    if (!token) {return false}
+
     let parsedToken = this.parseJwt(token)
     if (parsedToken.roles.indexOf('ROLE_ADMIN') !== -1) {
       return true

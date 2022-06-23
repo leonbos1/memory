@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http'
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,11 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http'
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: 'admin', component: AdminComponent},
-      { path: 'login', component: LoginComponent}
+      {  path: '', 
+      component: AdminComponent,
+      canActivate: [AuthGuard] },
+      { path: 'login',
+      component: LoginComponent}
     ])
   ],
   providers: [{

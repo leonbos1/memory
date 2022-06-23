@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
+import {Router} from '@angular/router'
 
 
 
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   email = ''
   password = ''
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService,  private router: Router) { }
 
   ngOnInit(): void {
   
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   login() {
 
     const loginObserver = {
-      next: (x: any) => console.log('user logged in'),
+      next: (x: any) => this.router.navigate(['/']),
       error: (err: any) => console.log(err)
     }
 
