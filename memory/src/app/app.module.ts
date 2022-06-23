@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http'
+import { AuthInterceptor } from './auth.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,11 @@ import { HttpClientModule } from '@angular/common/http'
       { path: 'login', component: LoginComponent}
     ])
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
