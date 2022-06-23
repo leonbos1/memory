@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 
@@ -21,13 +22,16 @@ export class LoginComponent implements OnInit {
     
 
   login() {
-    this._auth.login(this.email, this.password)
-    .subscribe(
-      response => console.log(response),
-      err => console.log(err)
-    )
+
+    const loginObserver = {
+      next: (x: any) => console.log('user logged in'),
+      error: (err: any) => console.log(err)
+    }
+
+    this._auth.login(this.email, this.password).subscribe(loginObserver)
   
   }
+
 
   back() {
     document.location.href='http://127.0.0.1:5500/login.html'

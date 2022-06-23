@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpResponse } from '@angular/common/http'
+import {map} from 'rxjs/operators'
 
 
 @Injectable({
@@ -16,7 +17,29 @@ export class AuthService {
       'username':email,
       'password':password
     }
-    return this.http.post<any>(this._loginUrl, user)
+    return this.http.post<any>(this._loginUrl, user).pipe(
+      map((response: any) => {
+        const user = response
+        if (user) {
+          let roles = this.parseJwt(user.token).roles
+
+          if (roles.indexOf('ROLE_ADMIN') !== -1) {
+            console.log('user is admin!')
+            localStorage.setItem('token',user.token)
+
+          } else {console.log('user is not admin')}
+
+        }
+      })
+    )
+  }
+
+  parseJwt(token:String) {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
   }
 
 }
