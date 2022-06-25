@@ -1,0 +1,26 @@
+<div>
+
+<h1>General Info</h1>
+<p>Aantal spelers: {{playerCount}}</p>
+<p>Aantal spellen: {{gamesCount}}</p>
+
+<p>Populair api's:</p>
+
+<table>
+    <thead>
+    <tr>
+      <th>API</th>
+      <th>Aantal games</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let api of apis"> 
+            <td *ngIf="api.api !== '' ">{{ api.api }}</td>
+            <td *ngIf="api.api === '' ">No API</td>
+            <td>{{ api.aantal }}</td>               
+        </tr>
+    </tbody>
+  </table>
+
+</div>

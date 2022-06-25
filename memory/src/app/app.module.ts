@@ -11,12 +11,18 @@ import { HttpClientModule } from '@angular/common/http'
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AuthGuard } from './services/auth.guard';
+import { GeneralInfoComponent } from './general-info/general-info.component';
+import { PlayersComponent } from './players/players.component';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    GeneralInfoComponent,
+    PlayersComponent,
+    GamesComponent
   ],
   imports: [
     HttpClientModule,
@@ -27,9 +33,11 @@ import { AuthGuard } from './services/auth.guard';
     RouterModule.forRoot([
       {  path: '', 
       component: AdminComponent,
-      canActivate: [AuthGuard] },
+      canActivate: [AuthGuard] 
+    },
       { path: 'login',
-      component: LoginComponent}
+      component: LoginComponent
+    }
     ])
   ],
   providers: [{

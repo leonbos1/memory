@@ -15,9 +15,15 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let token = localStorage.getItem('token')
-      if (!token) {return false}
+
+      if (!token) {
+        this.router.navigate(['login'])
+        return false
+      }
+
       var isAuthenticated = this.authService.isAdmin(token);
-      if (!isAuthenticated) {
+      if (!isAuthenticated || this.authService.isExpired(token)) {
+        localStorage.removeItem('token')
           this.router.navigate(['/login']);
       }
       return isAuthenticated;

@@ -17,10 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(private _auth: AuthService,  private router: Router) { }
 
   ngOnInit(): void {
-  
-    }
+  }
     
-
   login() {
 
     const loginObserver = {
@@ -31,7 +29,6 @@ export class LoginComponent implements OnInit {
     this._auth.login(this.email, this.password).subscribe(loginObserver)
   
   }
-
 
   back() {
     document.location.href='http://127.0.0.1:5500/login.html'

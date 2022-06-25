@@ -46,8 +46,17 @@ export class AuthService {
     if (!token) {return false}
 
     let parsedToken = this.parseJwt(token)
+    console.log(parsedToken)
     if (parsedToken.roles.indexOf('ROLE_ADMIN') !== -1) {
       return true
+    }
+    return false
+  }
+
+  isExpired(token : any) {
+    let time = this.parseJwt(token).exp
+    if (Date.now() >= time * 1000) {
+      return true;
     }
     return false
   }
