@@ -22,7 +22,7 @@ import { GamesComponent } from './games/games.component';
     LoginComponent,
     GeneralInfoComponent,
     PlayersComponent,
-    GamesComponent
+    GamesComponent,
   ],
   imports: [
     HttpClientModule,

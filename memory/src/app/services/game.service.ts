@@ -8,8 +8,6 @@ export class GameService {
   constructor() { }
 
   formatDate(data : any) {
-    console.log(data)
-
     for (let i = 0; i < data.length; i++) {
       let dateObject = new Date(data[i].date)
       let time = dateObject.toTimeString().substr(0,8)
