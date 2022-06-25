@@ -1,13 +1,14 @@
 var gridSize = 6;
 const gameLength = 300;
 var timeRemaining = 300;
+var timePassed = 0;
 var pairsFound = 0;
 var imageType = "" // dogs, picsum, random, memes ...
 var closedCardColor = ""
 
 window.onload = function() {
     if(localStorage.getItem('token') === null){
-        window.location.href="login.html";        
+        window.location.href="login.html";            
     }
 
     // document.getElementById("login").addEventListener("click", function() {
@@ -160,6 +161,7 @@ function updateScoreboard() {
     fetch("http://localhost:8000/scores")
     .then(response => response.json())
     .then ( response => {
+        console.log(response)
         let sortedScores = response.sort(compareScores)
         for (let i = 0; i < sortedScores.length; i++) {
             document.getElementById(`sb-${i}`).innerText = sortedScores[i].username + ", " + sortedScores[i].score + " seconds";
@@ -263,17 +265,35 @@ function changeCardColor(cardType, color){
 }
 
 function gameWon(){
+    let score = timePassed
+
     document.getElementById("new-game-pop-up").style.display = "block";
 
     playing = false;
     let timeUsed = document.getElementById("time-used");
-    timeUsed.innerText = `It took you ${timePassed} seconds to complete the game.`;
+    timeUsed.innerText = `It took you ${score} seconds to complete the game.`;
 
     document.getElementById("new-game").addEventListener('click', function() {
         document.getElementById("new-game-pop-up").style.display = "none";
         newGame();
     })
 
+    postGame(score)
+}
+
+function postGame(score){
+    let jwt = parseJwt(localStorage.getItem('token'))
+    let id = jwt['sub']
+
+    let method = `POST`
+    let url = `http://localhost:8000/game/save`
+    let body = {
+        "id": id,
+        "score": score,
+        "api": imageType
+    }
+
+    request(method, url, body)
 }
 
 function getFavorites(){
@@ -322,6 +342,7 @@ function Timer(){
     timePassed++;
     setTimeout("Timer()",1000)
 }
+
 function request(method, url, body) {
     let jwt = localStorage.getItem('token')
 
