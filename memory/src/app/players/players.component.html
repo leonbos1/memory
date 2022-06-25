@@ -1,0 +1,19 @@
+Players
+<div class="container">
+  <h1>Players</h1>
+    <table class="players">
+        <thead>
+        <tr>
+          <th>Players</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of allPlayers"> 
+                <td id={{player.id}}>{{ player.username }}</td>
+                <td id={{player.id}}>{{ player.email }}</td>
+                
+            </tr>
+        </tbody>
+      </table>
+</div>

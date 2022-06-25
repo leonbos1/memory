@@ -8,12 +8,21 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http'
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http'
+import { AuthGuard } from './services/auth.guard';
+import { GeneralInfoComponent } from './general-info/general-info.component';
+import { PlayersComponent } from './players/players.component';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    GeneralInfoComponent,
+    PlayersComponent,
+    GamesComponent
   ],
   imports: [
     HttpClientModule,
@@ -22,11 +31,20 @@ import { HttpClientModule } from '@angular/common/http'
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: 'admin', component: AdminComponent},
-      { path: 'login', component: LoginComponent}
+      {  path: '', 
+      component: AdminComponent,
+      canActivate: [AuthGuard] 
+    },
+      { path: 'login',
+      component: LoginComponent
+    }
     ])
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
