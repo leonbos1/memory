@@ -10,9 +10,9 @@ import { AdminComponent } from './admin/admin.component';
 const routes: Routes = [
   { path: '', component: AdminComponent,
     children: [
-      { path: 'players', component: PlayersComponent },
-      { path: 'games', component: GamesComponent},
-      { path: 'general-info', component: GeneralInfoComponent}
+      { path: 'players', component: PlayersComponent,  canActivate: [AuthGuard] },
+      { path: 'games', component: GamesComponent,  canActivate: [AuthGuard]},
+      { path: 'general-info', component: GeneralInfoComponent,  canActivate: [AuthGuard]}
     ],
     canActivate: [AuthGuard]}
  
