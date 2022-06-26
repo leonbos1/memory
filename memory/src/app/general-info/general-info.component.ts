@@ -40,7 +40,6 @@ export class GeneralInfoComponent implements OnInit {
 
     for (let i = 0; i < this.apis.length; i++) {
       if (this.apis[i].api ==='') {this.apis[i].api = 'None'}
-      console.log(this.apis[i])
       labels.push(this.apis[i].api)
       apiUses.push(this.apis[i].aantal)
     }

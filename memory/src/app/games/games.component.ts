@@ -24,7 +24,8 @@ export class GamesComponent implements OnInit {
   games() : void {
       this.http.get<any>(`http://localhost:8000/api/games`).subscribe(data=> {
         this.gameService.formatDate(data['hydra:member'])
-        this.allGames = data['hydra:member']
+        
+        this.allGames = this.gameService.get10RecentGames(data['hydra:member'])
   
         })    
         

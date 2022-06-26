@@ -18,5 +18,10 @@ export class GameService {
     }
   }
 
+  get10RecentGames(data : any) {
+    return data.slice(data.length - 15, data.length)
+
+  }
+
 
 }

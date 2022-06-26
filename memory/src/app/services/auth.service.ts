@@ -23,11 +23,9 @@ export class AuthService {
         if (user) {
 
           if (this.isAdmin(user.token)) {
-            console.log('user is admin!')
             localStorage.setItem('token',user.token)
            
-          } else {console.log('user is not admin')}
-
+          } 
         }
       })
     )
@@ -46,7 +44,6 @@ export class AuthService {
     if (!token) {return false}
 
     let parsedToken = this.parseJwt(token)
-    console.log(parsedToken)
     if (parsedToken.roles.indexOf('ROLE_ADMIN') !== -1) {
       return true
     }

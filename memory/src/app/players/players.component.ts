@@ -16,7 +16,7 @@ export class PlayersComponent implements OnInit {
   playerid: number;
 
   constructor(private playerService : PlayerService, private http: HttpClient, private router: Router) {
-    this.playerid = 1
+    this.playerid = 0
    }
 
   ngOnInit(): void {
@@ -25,10 +25,15 @@ export class PlayersComponent implements OnInit {
   }
 
   players() : void {
-    this.http.get<any>('http://localhost:8000/api/admin/players').subscribe(data => {
-        this.playerService.giveIds(data)
-        this.allPlayers = data
+    this.http.get<any>('http://localhost:8000/api/players').subscribe(data => {
+        this.allPlayers = data['hydra:member']
     })    
   } 
+
+  delete(id : number) {
+    this.http.delete<any>(`http://localhost:8000/api/players/${id}`).subscribe(data => {
+    })
+    this.players()
+  }
 
 }
