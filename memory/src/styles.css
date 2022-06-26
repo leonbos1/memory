@@ -7,6 +7,10 @@ h1, p {
     text-align: center;
 }
 
+hr {
+    max-width: 75%;
+}
+
 button, select, input {
     background-color: white;
     border-radius: .375em;
@@ -63,5 +67,9 @@ tr:nth-child(even) {
     .container {
         max-width: 1200px;
         margin:0 auto;
+    }
+
+    hr {
+        max-width: 1200px;
     }
 }
