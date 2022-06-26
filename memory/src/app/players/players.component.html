@@ -4,14 +4,17 @@ Players
     <table class="players">
         <thead>
         <tr>
+          <th>ID</th>
           <th>Players</th>
           <th>Email</th>
         </tr>
         </thead>
         <tbody>
             <tr *ngFor="let player of allPlayers"> 
-                <td id={{player.id}}>{{ player.username }}</td>
-                <td id={{player.id}}>{{ player.email }}</td>
+              <td>{{ player.id }}</td>
+                <td>{{ player.username }}</td>
+                <td>{{ player.email }}</td>
+                <td><button (click) = "delete(player.id)">Delete</button></td>
                 
             </tr>
         </tbody>
