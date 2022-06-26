@@ -14,6 +14,7 @@ import { AuthGuard } from './services/auth.guard';
 import { GeneralInfoComponent } from './general-info/general-info.component';
 import { PlayersComponent } from './players/players.component';
 import { GamesComponent } from './games/games.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { GamesComponent } from './games/games.component';
     GeneralInfoComponent,
     PlayersComponent,
     GamesComponent,
+    NavbarComponent,
   ],
   imports: [
     HttpClientModule,
